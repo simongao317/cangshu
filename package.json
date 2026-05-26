@@ -1,0 +1,15 @@
+{
+  "name": "藏书网页版",
+  "version": "1.0.0",
+  "description": "个人图书收藏管理网页应用",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": ["图书管理", "藏书", "PWA", "IndexedDB"],
+  "author": "",
+  "license": "MIT"
+}

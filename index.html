@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>藏书 - 个人图书收藏管理</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部导航 -->
+        <header class="app-header">
+            <h1 class="app-title">藏书</h1>
+            <div class="header-actions">
+                <button id="scan-btn" class="btn btn-primary">
+                    <i class="fas fa-camera"></i> 扫码录入
+                </button>
+                <button id="import-btn" class="btn btn-secondary">
+                    <i class="fas fa-file-import"></i> 导入
+                </button>
+                <button id="export-btn" class="btn btn-secondary">
+                    <i class="fas fa-file-export"></i> 导出
+                </button>
+            </div>
+        </header>
+
+        <!-- 主分类导航 -->
+        <nav class="category-nav">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="owned">
+                    <span class="tab-title">已购</span>
+                    <span class="tab-count" id="owned-count">0</span>
+                </button>
+                <button class="category-tab" data-category="wishlist">
+                    <span class="tab-title">想读</span>
+                    <span class="tab-count" id="wishlist-count">0</span>
+                </button>
+                <button class="category-tab" data-category="read-borrowed">
+                    <span class="tab-title">未购已读</span>
+                    <span class="tab-count" id="read-borrowed-count">0</span>
+                </button>
+            </div>
+            
+            <!-- 子分类 -->
+            <div class="subcategory-nav" id="subcategory-nav">
+                <button class="subcategory-btn active" data-subcategory="owned-unread">已购 · 未读</button>
+                <button class="subcategory-btn" data-subcategory="owned-read">已购 · 已读</button>
+            </div>
+        </nav>
+
+        <!-- 排序控制 -->
+        <div class="sort-controls">
+            <div class="sort-options">
+                <button class="sort-btn active" data-sort="time-desc">
+                    <i class="fas fa-arrow-down-wide-short"></i> 时间降序
+                </button>
+                <button class="sort-btn" data-sort="time-asc">
+                    <i class="fas fa-arrow-up-wide-short"></i> 时间升序
+                </button>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="search-input" placeholder="搜索书名、作者、ISBN...">
+            </div>
+        </div>
+
+        <!-- 图书列表 -->
+        <main class="book-list" id="book-list">
+            <div class="empty-state" id="empty-state">
+                <i class="fas fa-book-open"></i>
+                <h3>暂无图书</h3>
+                <p>点击"扫码录入"添加第一本书，或通过"导入"功能批量添加</p>
+            </div>
+            <!-- 图书卡片将通过JS动态生成 -->
+        </main>
+
+        <!-- 模态框容器 -->
+        <div id="modal-container"></div>
+
+        <!-- 文件上传输入 -->
+        <input type="file" id="file-upload" accept=".csv,.xlsx,.xls" style="display: none;">
+        <input type="file" id="camera-upload" accept="image/*" capture="environment" style="display: none;">
+    </div>
+
+    <!-- 脚本 -->
+    <script src="js/db.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/isbn.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- 外部库 -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@zxing/browser@0.1.1/dist/umd/index.min.js"></script>
+</body>
+</html>
